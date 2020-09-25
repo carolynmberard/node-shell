@@ -4,13 +4,21 @@ process.stdin.on('data', (data) => {
   const cmd = data.toString().trim();
 
   if (cmd === 'pwd') {
-    const filePath = __dirname;
-    process.stdout.write(filePath);
+    const pwdFunc = require('./pwd');
+    pwdFunc;
+  } else if (cmd === 'ls') {
+    const lsFunc = require('./ls');
+    lsFunc;
+  } else if (cmd.startsWith('cat ')) {
+    const fileName = cmd.slice(4);
+    module.exports = { name: fileName };
+    const catFunc = require('./cat');
+    catFunc;
   } else {
     process.stdout.write('You typed: ' + cmd);
   }
   process.stdout.write('\nprompt > ');
-})
+});
 
 // process.stdin.on('pwd', )
 // take in `pwd`
