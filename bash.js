@@ -14,6 +14,11 @@ process.stdin.on('data', (data) => {
     module.exports = { name: fileName };
     const catFunc = require('./cat');
     catFunc;
+  } else if(cmd.startsWith('curl ')) {
+    const url = cmd.slice(4);
+    module.exports = { name: url};
+    const curlFunc = require('./curl');
+    curlFunc;
   } else {
     process.stdout.write('You typed: ' + cmd);
   }
